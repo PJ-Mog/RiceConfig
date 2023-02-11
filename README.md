@@ -7,8 +7,8 @@ A `Setting<T>` requires the consumer to establish a `Default` value for the sett
 Optionally, the consumer can define a `Min` and/or a `Max` value.
 In the event that a `Min` or `Max` is defined and the configuration file has been adjusted by a user to a value outside the defined range, the value will be clamped to an acceptable value.
 
-Consumers can also tag their `Setting<T>` properties with a `[SettingDescription("")]` attribute.
-The string passed to this attribute will be added after the corresponding field and value in the JSON file as a comment.
+Consumers can also define a `Description` for their settings.
+The provided string will be added after the corresponding field and value in the JSON file as a comment.
 The `Default` value and, if present, `Min` and `Max` will be prefixed to the given description to help guide users on what values to fill in for settings.
 
 When a mod is loaded for the first time, a configuration JSON will be created with the given default values.

@@ -7,22 +7,10 @@ using RiceConfig.Extensions;
 using Vintagestory.API.Common;
 
 namespace RiceConfig {
-  [AttributeUsage(AttributeTargets.Property)]
-  public class SettingDescriptionAttribute : Attribute {
-    public string Description { get; set; }
-    public SettingDescriptionAttribute(string description) {
-      Description = description;
-    }
-  }
-
-  public abstract class Setting {
-    public abstract string Description { get; set; }
-  }
-
   [ProtoContract]
-  public class Setting<T> : Setting {
+  public class Setting<T> {
     private string _description;
-    public override string Description {
+    public string Description {
       get { return _description; }
       set {
         List<string> restrictions = new List<string>(3);
@@ -129,18 +117,7 @@ namespace RiceConfig {
     }
 
     public void Save(ICoreAPI api, string filename) {
-      UpdateDescriptions();
       api.StoreModConfig(this, filename);
-    }
-
-    protected void UpdateDescriptions() {
-      foreach (var property in GetType().GetProperties()) {
-        var description = property.GetCustomAttribute<SettingDescriptionAttribute>(true)?.Description;
-        if (description == null) { continue; }
-        var setting = property.GetMethod.Invoke(this, null) as Setting;
-        if (setting == null) { continue; }
-        setting.Description = description;
-      }
     }
   }
 

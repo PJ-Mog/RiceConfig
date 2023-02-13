@@ -1,7 +1,13 @@
 # VSLib-Riceconfig
-***Not ready for use.***
+A library to simplify handling of settings/configurations for Vintage Story mods.
 
-This library is intended to be used as a git submodule in other Vintage Story mods.
+## Required references
+
+* `VintagestoryAPI.dll`
+* `Newtonsoft.Json.dll`
+* `protobuf-net.dll`
+
+## Use
 
 Consumers (mod developers) each define their own `ClientConfig` and/or `ServerConfig` classes.
 Consumers then create a concrete configuration system class, inheriting from `ConfigurationSystem<T,U>` and supplying their Client and Server Config classes.

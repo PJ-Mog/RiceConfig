@@ -4,11 +4,12 @@
 This library is intended to be used as a git submodule in other Vintage Story mods.
 
 Consumers (mod developers) each define their own `ClientConfig` and/or `ServerConfig` classes.
-Consumers then create a concrete configuration class, inheriting from `ConfigurationSystem<T,U>` and supplying their Client and Server Config classes.
+Consumers then create a concrete configuration system class, inheriting from `ConfigurationSystem<T,U>` and supplying their Client and Server Config classes.
+Optionally, consumers can inherit from `ServerOnlyConfigurationSystem<T>` or `ClientOnlyConfigurationSystem<U>` if their configurations are limited to a single side.
 
 Configuration classes consist of many `Setting<T>`s where `T` is a type understood by the Newtonsoft JsonConverter.
-A `Setting<T>` requires the consumer to establish a `Default` value for the setting.
-Optionally, the consumer can define a `Min` and/or a `Max` value.
+A `Setting<T>` requires consumers to establish a `Default` value for the setting.
+Optionally, consumers can define a `Min` and/or a `Max` value.
 In the event that a `Min` or `Max` is defined and the configuration file has been adjusted by a user to a value outside the defined range, the value will be clamped to an acceptable value.
 
 Consumers may also define a `Description` for their settings.

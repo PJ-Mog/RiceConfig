@@ -23,6 +23,7 @@ namespace RiceConfig {
 
     private bool _valueSet = false;
     private T _value;
+    private bool ShouldSerializeValue() => true;
     [ProtoMember(1)]
     public T Value {
       get { return _valueSet ? _value : Default; }

@@ -101,20 +101,17 @@ namespace RiceConfig {
     // Throws exception if the config file exists, but had parsing errors.
     // Returns null if no config file exists.
     public static T TryLoadModConfig<T>(ICoreAPI api, string filename) where T : Config {
-      T config = default(T);
       try {
-        config = api.LoadModConfig<T>(filename);
+        return api.LoadModConfig<T>(filename);
       }
       catch (JsonReaderException e) {
         api.Logger.ModError("Unable to parse configuration file, {0}. Correct syntax errors and retry, or delete. {1}", filename, e);
-        throw e;
+        throw;
       }
       catch (Exception e) {
         api.Logger.ModError("I don't know what happened. Delete {0} in the mod config folder and try again. {1}", filename, e);
-        throw e;
+        throw;
       }
-
-      return config;
     }
 
     public void Save(ICoreAPI api, string filename) {
